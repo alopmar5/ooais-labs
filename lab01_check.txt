@@ -1,0 +1,94 @@
+OOAIS Laboratory 1
+
+ooais-project/
+├── data/
+│ ├── raw/
+│ │ └── observations.csv
+│ └── processed/
+│ ├── clean.csv
+│ ├── final.csv
+│ ├── high_temp.csv
+│ ├── observations_clean.csv
+│ ├── observations_subset.csv
+│ ├── selected_columns.csv
+│ └── tmp.csv
+├── src/
+│ ├── ingestion/
+│ │ └── load_data.py
+│ ├── preprocessing/
+│ ├── features/
+│ ├── models/
+│ ├── inference/
+│ └── monitoring/
+├── reports/
+│ └── lab01_report.txt
+├── lab01_check.txt
+
+2.Dataset File Listings
+
+Raw dataset:
+
+-data/raw/observations.csv
+
+Processed datasets:
+
+-clean.csv
+
+-final.csv
+
+-high_temp.csv
+
+-observations_clean.csv
+
+-observations_subset.csv
+
+-selected_columns.csv
+
+-tmp.csv
+
+3.Results of Search and Count Commands
+
+Total records:
+5
+
+Unique objects:
+OBJ-001
+OBJ-002
+OBJ-003
+OBJ-004
+
+Object occurrences:
+OBJ-001: 2
+OBJ-002: 1
+OBJ-003: 1
+OBJ-004: 1
+
+Invalid records:
+1
+
+4.Confirmation of Permissions
+
+All files are accessible and readable.
+All commands executed successfully without permission issues.
+
+5.Summary of Performed Tasks
+
+Created the project structure
+
+Created and inspected the dataset
+
+Performed command-line data analysis
+
+Identified invalid records
+
+Cleaned dataset and generated processed files
+
+Extracted high temperature records
+
+Created dataset with selected columns
+
+Implemented ingestion script to compute statistics
+
+Simulated data flow from raw to processed datasets
+
+6.Repository Link: https://github.com/alopmar5/ooais-labs.git
