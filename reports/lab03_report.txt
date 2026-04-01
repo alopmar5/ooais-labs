@@ -1,0 +1,181 @@
+TASK 4: Implementing the Ingestion Script
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+
+
+TASk 5:  Column Consistency Validation
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+Column validation: OK
+
+TASK 6:  Record Count Validation
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+Column validation: OK
+Record count: MISMATCH
+Expected: 500
+Actual: 501
+
+TASK 7: Detecting Invalid Records
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+Column validation: OK
+Record count: MISMATCH
+Expected: 500
+Actual: 501
+Valid: 470
+Invalid: 31
+Invalid records alignment: MISMATCH
+Expected: 30
+Actual: 31
+
+TASK 8: Saving Processed Outputs
+
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+Column validation: OK
+Record count: MISMATCH
+Expected: 500
+Actual: 501
+Valid: 470
+Invalid: 31
+Invalid records alignment: MISMATCH
+Expected: 30
+Actual: 31
+Generated: data/processed/observations_valid.csv
+Generated: data/processed/observations_invalid.csv
+
+INVALID:
+$ cat observations_invalid.csv
+timestamp,object_id,temperature,velocity,altitude,signal_strength,sensor_status,anomaly_flag
+2026-03-01 18:50:00,OBJ-001,INVALID,7.7,598,0.81,OK,0
+2026-03-01 19:20:00,OBJ-003,INVALID,7.65,538,0.89,OK,0
+
+
+VALID:
+$ cat observations_valid.csv
+timestamp,object_id,temperature,velocity,altitude,signal_strength,sensor_status,anomaly_flag
+2026-03-01 12:00:00,OBJ-005,15.77,7.06,464,0.98,OK,0
+2026-03-01 12:05:00,OBJ-005,14.94,7.28,448,0.84,OK,0
+
+
+TASK 9: Preparing Data for Preprocessing and Model Inp
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_
+strength', 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal
+_strength', 'sensor_status', 'anomaly_flag']
+Column validation: OK
+Record count: MISMATCH
+Expected: 500
+Actual: 501
+Valid: 470
+Invalid: 31
+Invalid records alignment: MISMATCH
+Expected: 30
+Actual: 31
+Generated: data/processed/observations_valid.csv
+Generated: data/processed/observations_invalid.csv
+Generated: data/processed/model_input.csv
+
+$ cat model_input.csv
+temperature,velocity,altitude,signal_strength,sensor_status
+15.77,7.06,464,0.98,OK
+14.94,7.28,448,0.84,OK
+16.29,7.03,451,0.5061892083657298,DEGRADED
+15.71,7.88,577,0.87,OK
+
+TASK 10:Ingestion Summary and Data Quality Reporting
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+Column validation: OK
+Record count: MISMATCH
+Expected: 500
+Actual: 501
+Valid: 470
+Invalid: 31
+Invalid records alignment: MISMATCH
+Expected: 30
+Actual: 31
+Generated: data/processed/observations_valid.csv
+Generated: data/processed/observations_invalid.csv
+Generated: data/processed/model_input.csv
+Generated: reports/ingestion_summary.txt
+
+
+P2: Pipeline Thinking
+Explain:
+• why ingestion must precede preprocessing:
+Ingestion acts as a "trust filter" that verifies data structure and accessibility before performing any numerical transformations.
+
+• what happens if invalid data is not removed:
+Placeholder values like INVALID cause mathematical errors, script crashes, and biased results in downstream analysis.
+
+• how ingestion affects model quality:
+Proper ingestion ensures models are trained on clean, verified data, which is essential for reliable predictions and system integrity
+
+
+P3: Metadata Consistency
+
+$ python3 src/ingestion/ingest_data.py
+Dataset: orbital_observations
+Records loaded: 501
+Columns (dataset): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength',
+ 'sensor_status', 'anomaly_flag']
+Columns (metadata): ['timestamp', 'object_id', 'temperature', 'velocity', 'altitude', 'signal_strength'
+, 'sensor_status', 'anomaly_flag']
+Column validation: OK
+Record count: MISMATCH
+Expected: 500
+Actual: 501
+Valid: 470
+Invalid: 31
+Invalid records alignment: MISMATCH
+Expected: 30
+Actual: 31
+Generated: data/processed/observations_valid.csv
+Generated: data/processed/observations_invalid.csv
+Generated: data/processed/model_input.csv
+Generated: reports/ingestion_summary.txt
+Feature validation: OK
+Target validation: OK
+
